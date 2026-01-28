@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <!-- Basic Icons -->
+    <link
+      href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!-- Filled Icons -->
+    <link
+      href="https://cdn.boxicons.com/3.0.8/fonts/filled/boxicons-filled.min.css"
+      rel="stylesheet"
+    />
+    <!-- Brand Icons -->
+    <link
+      href="https://cdn.boxicons.com/3.0.8/fonts/brands/boxicons-brands.min.css"
+      rel="stylesheet"
+    />
+    <title>To do List</title>
+  </head>
+  <body>
+    <div class="list_section">
+      <div class="title">
+        <h1>List<span>ify</span></h1>
+        <p>to create structured work</p>
+      </div>
+      <form id="form" class="box_list">
+        <div class="input_list">
+          <div class="input_label">
+            <label for="input1">Tugas Baru</label>
+            <input
+              id="taskInput"
+              type="text"
+              placeholder="Masukkan List Kamu..."
+            />
+          </div>
+          <div class="input_label">
+            <label class="form-label">Tingkat Prioritas</label>
+            <div class="select-wrapper">
+              <select id="Prioritas">
+                <option>Prioritas</option>
+                <option class="tinggi" value="Tinggi">Tinggi</option>
+                <option class="sedang" value="Sedang">Sedang</option>
+                <option class="rendah" value="Rendah">Rendah</option>
+              </select>
+            </div>
+          </div>
+          <div class="input_label">
+            <label for="input3">Deadline</label>
+            <input id="date" type="date" />
+          </div>
+        </div>
+        <button style="cursor: pointer" id="addButton" type="submit">
+          Tambah Tugas
+        </button>
+      </form>
+
+      <div class="filter_list">
+        <div class="kiri">
+          <button>Semua</button>
+          <button>Aktif</button>
+          <button>Selesai</button>
+          <button>Hari ini</button>
+          <button>Prioritas</button>
+        </div>
+        <div class="kanan">
+          <button type="reset" id="deleteButton">Hapus Semua</button>
+        </div>
+      </div>
+
+      <div class="task_list">
+        <div id="outputTask" class="detailTask">
+          <div class="tengah">
+            <p id="taskList"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="realtime_status">
+        <h1></h1>
+      </div>
+    </div>
+  </body>
+  <script src="script.js"></script>
+</html>
