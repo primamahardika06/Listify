@@ -35,23 +35,27 @@
             <input
               id="taskInput"
               type="text"
+              value=""
               placeholder="Masukkan List Kamu..."
             />
+            <p id="msg"></p>
           </div>
           <div class="input_label">
             <label class="form-label">Tingkat Prioritas</label>
             <div class="select-wrapper">
               <select id="Prioritas">
-                <option>Prioritas</option>
+                <option value="">Prioritas</option>
                 <option class="tinggi" value="Tinggi">Tinggi</option>
                 <option class="sedang" value="Sedang">Sedang</option>
                 <option class="rendah" value="Rendah">Rendah</option>
               </select>
+            <p id="msg2"></p>
             </div>
           </div>
           <div class="input_label">
             <label for="input3">Deadline</label>
-            <input id="date" type="date" />
+            <input value="" id="date" type="date" />
+            <p id="msg3"></p>
           </div>
         </div>
         <button style="cursor: pointer" id="addButton" type="submit">

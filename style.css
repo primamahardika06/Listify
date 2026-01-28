@@ -101,6 +101,13 @@ select {
   flex-direction: column;
 }
 
+#msg{
+  color: red;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+}
+
 /* filter list */
 
 .filter_list {

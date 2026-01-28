@@ -9,6 +9,9 @@ const statusBar = document.getElementById("status");
 const statusAktif = document.getElementById("statusAktif");
 const statusSelesai = document.getElementById("statusSelesai");
 const statusPrioritas = document.getElementById("statusPrioritas");
+const msg = document.getElementById("msg");
+const msg2 = document.getElementById("msg2");
+const msg3 = document.getElementById("msg3");
 
 // Realtime Status Bar
 let statusTask = 0;
@@ -44,11 +47,16 @@ let formValidation = () => {
     date.value === "" ||
     prioritas.value === "Prioritas"
   ) {
-    alert("Tolong diisi dengan lengkap yaa!");
+    msg.textContent = "*Tidak boleh kosong!";
+    msg2.textContent = "*Tidak boleh kosong!";
+    msg3.textContent = "*Tidak boleh kosong!";
     statusTask--;
     updateStatusBar();
   } else {
     acceptData();
+    msg.textContent = "";
+    msg2.textContent = "";
+    msg3.textContent = "";
   }
 };
 
