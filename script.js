@@ -5,14 +5,39 @@ const taskList = document.getElementById("taskList");
 const deleteBtn = document.getElementById("deleteButton");
 const prioritas = document.getElementById("Prioritas");
 const date = document.getElementById("date");
+const statusBar = document.getElementById("status");
+const statusAktif = document.getElementById("statusAktif");
+const statusSelesai = document.getElementById("statusSelesai");
+const statusPrioritas = document.getElementById("statusPrioritas");
 
+// Realtime Status Bar
+let statusTask = 0;
+let updateStatusBar = () => {
+  statusBar.innerText = `${statusTask}`;
+  statusAktif.innerText = `${statusTask}`;
+};
+
+//check button
+document.addEventListener("click", function (e) {
+  if (e.target.classList.contains("checkButton")) {
+    e.target.classList.toggle("checked");
+    statusSelesai.innerText = `${document.getElementsByClassName("checked").length}`;
+    statusAktif.innerText = `${statusTask - document.getElementsByClassName("checked").length}`; 
+    // if (prioritas.value == "Tinggi") {
+    //   statusPrioritas.innerText = `${document.getElementsByClassName("checked").length}`;
+    // }
+  }
+});
+
+// Form Submit Event
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  console.log("Form submitted");
-
+  statusTask++;
+  updateStatusBar();
   formValidation();
 });
 
+// Form Validation
 let formValidation = () => {
   if (
     input.value === "" ||
@@ -20,21 +45,25 @@ let formValidation = () => {
     prioritas.value === "Prioritas"
   ) {
     alert("Tolong diisi dengan lengkap yaa!");
+    statusTask--;
+    updateStatusBar();
   } else {
     acceptData();
   }
 };
 
+// Accept Data
 let data = {};
 let acceptData = () => {
   createPost();
 };
 
+// Create Post
 let createPost = () => {
   taskList.innerHTML += ` 
         <div class="detailTask">
           <div class="kiri">
-            <button></button>
+            <button class="checkButton"></button>
           </div>
           <div class="tengah">
             <p>${input.value}</p>
@@ -71,12 +100,14 @@ let createPost = () => {
   prioritas.value = "";
 };
 
-
-
+// Delete and Edit Post
 let deletePost = (e) => {
   e.parentElement.parentElement.parentElement.remove();
-}
+  statusTask--;
+  updateStatusBar();
+};
 
+// Edit Post
 let editPost = (e) => {
   let selectedTask = e.parentElement.parentElement.parentElement;
   input.value = selectedTask.children[1].children[0].innerHTML;
@@ -85,6 +116,9 @@ let editPost = (e) => {
   selectedTask.remove();
 };
 
+// Delete All Tasks
 deleteBtn.addEventListener("click", () => {
   taskList.innerHTML = "";
+  statusTask = 0;
+  updateStatusBar();
 });

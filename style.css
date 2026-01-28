@@ -133,6 +133,12 @@ select {
   color: white;
 }
 
+.filter_list .kiri button.checked {
+  background-color: var(--primary-color);
+  border: none;
+  color: white;
+}
+
 .filter_list .kanan {
   display: flex;
 }
@@ -188,6 +194,12 @@ select {
   color: white;
 }
 
+.task_list .kiri button.checked {
+  background-color: var(--third-color--);
+  border: none;
+  color: white;
+}
+
 .task_list .tengah {
   display: flex;
   flex-direction: column;
@@ -219,6 +231,28 @@ select {
 }
 
 .realtime_status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 100px;
+  gap: 20px;
   border-top: 1px solid var(--third-color--);
+  
 }
+
+.realtime_status .statusTask{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--third-color--);
+}
+
+
+.realtime_status .statusTask p{
+  color: grey;
+  font-size: 12px;
+}
+
+
+
