@@ -15,28 +15,26 @@ const msg3 = document.getElementById("msg3");
 
 // Realtime Status Bar
 let statusTask = 0;
-let updateStatusBar = () => {
-  statusBar.innerText = `${statusTask}`;
-  statusAktif.innerText = `${statusTask}`;
-};
+let updateStatusPrioritas = 0;
 
+let updateStatusBar = () => {
+  statusBar.innerText = statusTask;
+  statusAktif.innerText = statusTask;
+  statusPrioritas.innerText = updateStatusPrioritas;
+};
 //check button
 document.addEventListener("click", function (e) {
   if (e.target.classList.contains("checkButton")) {
     e.target.classList.toggle("checked");
     statusSelesai.innerText = `${document.getElementsByClassName("checked").length}`;
-    statusAktif.innerText = `${statusTask - document.getElementsByClassName("checked").length}`; 
-    // if (prioritas.value == "Tinggi") {
-    //   statusPrioritas.innerText = `${document.getElementsByClassName("checked").length}`;
-    // }
+    statusAktif.innerText = `${statusTask - document.getElementsByClassName("checked").length}`;
+    statusPrioritas.innerText = `${updateStatusPrioritas - statusSelesai.innerText}`;
   }
 });
 
 // Form Submit Event
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  statusTask++;
-  updateStatusBar();
   formValidation();
 });
 
@@ -50,9 +48,13 @@ let formValidation = () => {
     msg.textContent = "*Tidak boleh kosong!";
     msg2.textContent = "*Tidak boleh kosong!";
     msg3.textContent = "*Tidak boleh kosong!";
-    statusTask--;
-    updateStatusBar();
   } else {
+    statusTask++;
+
+    if (prioritas.value === "Tinggi") {
+      updateStatusPrioritas++;
+    }
+    updateStatusBar();
     acceptData();
     msg.textContent = "";
     msg2.textContent = "";
@@ -112,6 +114,7 @@ let createPost = () => {
 let deletePost = (e) => {
   e.parentElement.parentElement.parentElement.remove();
   statusTask--;
+  updateStatusPrioritas--;
   updateStatusBar();
 };
 
@@ -122,11 +125,19 @@ let editPost = (e) => {
   date.value = selectedTask.children[1].children[1].children[1].innerHTML;
   prioritas.value = selectedTask.children[1].children[1].children[0].innerHTML;
   selectedTask.remove();
+  // statusSelesai.innerText = `0`;
+  // statusPrioritas.innerText = `0`;
+  statusTask--;
+  if (prioritas.value === "Tinggi") {
+      updateStatusPrioritas--;
+    }
+  updateStatusBar();
 };
 
 // Delete All Tasks
 deleteBtn.addEventListener("click", () => {
   taskList.innerHTML = "";
+  statusSelesai.innerText = `0`;
   statusTask = 0;
   updateStatusBar();
 });
